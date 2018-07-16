@@ -20,8 +20,11 @@
 
 \usepackage{bookmark,hyperref}
 \hypersetup{
-	colorlinks = true,
-	urlcolor = cyan
+       colorlinks = true,
+       anchorcolor = black,
+       linkcolor = black,
+       menucolor = black,
+       urlcolor = black
 }
 
 \usepackage{fancyvrb}
@@ -31,6 +34,13 @@
 \DefineVerbatimEnvironment{VerbatimRaw}{Verbatim}{frame=lines,framesep=2mm}
 \DefineVerbatimEnvironment{VerbatimErl}{Verbatim}{frame=lines,framesep=2mm,fontsize=\small}
 \DefineVerbatimEnvironment{VerbatimEshell}{Verbatim}{frame=lines,framesep=2mm,fontsize=\small}
+
+% see https://tex.stackexchange.com/questions/357448/verbatim-environment-to-split-long-words-over-lines
+\makeatletter
+\let\old@sverb\@sverb
+\def\@sverb#1{\old@sverb{#1}\zz}
+\def\zz#1{#1\ifx\@undefined#1\else\penalty\z@\expandafter\zz\fi}
+\makeatother
 
 \newcommand{\filename}[1]{\Verb`#1`}
 \newcommand{\app}[1]{\Verb`#1`}
